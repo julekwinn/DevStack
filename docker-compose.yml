@@ -345,6 +345,48 @@ services:
     networks:
       - custom_net
     restart: always
+  # Mosquitto Broker
+  mqtt:
+    image: eclipse-mosquitto:latest
+    container_name: mqtt_container
+    ports:
+      - "1883:1883" # Port dla protokołu MQTT
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf # Konfiguracja Mosquitto
+      - ./shared/mosquitto/data:/mosquitto/data # Dane Mosquitto
+      - ./shared/mosquitto/log:/mosquitto/log # Logi Mosquitto
+    networks:
+      - custom_net
+    restart: always
+
+  # EMQX Broker z bridge do Mosquitto
+  emqx:
+    image: emqx/emqx:latest
+    container_name: emqx_container
+    ports:
+      - "1884:1883" # Port MQTT zmieniony na hoście na 1884
+      - "18083:18083" # Port dla panelu zarządzania EMQX
+    environment:
+      - EMQX_ADMIN_PASSWORD=emqxpass # Hasło do interfejsu webowego
+      - EMQX_LOADED_PLUGINS="emqx_bridge_mqtt" # Załaduj plugin mostka
+    volumes:
+      - ./shared/emqx/etc/plugins/emqx_bridge_mqtt.conf:/opt/emqx/etc/plugins/emqx_bridge_mqtt.conf
+    networks:
+      - custom_net
+    restart: always
+
+  code-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.code-server
+    container_name: code_server_container
+    ports:
+      - "6900:8080"
+    volumes:
+      - ./code:/home/coder/project
+    networks:
+      - custom_net
+    restart: always
 
 networks:
   custom_net:

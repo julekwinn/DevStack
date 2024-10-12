@@ -304,6 +304,29 @@
             </div>
           </div>
 
+          <!-- Code-Server -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="devicon-vscode-plain colored text-4xl mr-2"></i>
+              <h3 class="text-2xl font-semibold">Code-Server</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Wersja Visual Studio Code uruchamiana w przeglądarce.
+            </p>
+            <a
+              href="http://localhost:6900"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >Otwórz Code-Server</a
+            >
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Login:</strong> coder</p>
+              <p><strong>Hasło:</strong> password1515!</p>
+              <p><strong>Port:</strong> 6900</p>
+              <p><strong>Nazwa kontenera:</strong> code_server_container</p>
+            </div>
+          </div>
+
           <!-- Grafana -->
           <div class="border rounded-lg p-6">
             <div class="flex items-center mb-4">
@@ -559,6 +582,45 @@
             <div class="mt-4 text-sm text-gray-500">
               <p><strong>Port:</strong> 2181</p>
               <p><strong>Nazwa kontenera:</strong> zookeeper_container</p>
+            </div>
+          </div>
+          <!-- MQTT -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="fa-solid fa-network-wired text-4xl mr-2"></i>
+              <!-- Font Awesome Network Wired Icon -->
+              <h3 class="text-2xl font-semibold">MQTT</h3>
+            </div>
+            <p class="text-gray-600 mb-4">Broker komunikacyjny MQTT.</p>
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Porty:</strong> 1883 (MQTT), 9001 (WebSocket)</p>
+              <p><strong>Nazwa kontenera:</strong> mqtt_container</p>
+            </div>
+          </div>
+
+          <!-- EMQX -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="fa-solid fa-network-wired text-4xl mr-2"></i>
+              <!-- Font Awesome Network Wired Icon -->
+              <h3 class="text-2xl font-semibold">EMQX</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Broker komunikacyjny EMQX z panelem administracyjnym.
+            </p>
+            <a
+              href="http://localhost:18083"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >Otwórz panel zarządzania EMQX</a
+            >
+            <div class="mt-4 text-sm text-gray-500">
+              <p>
+                <strong>Porty:</strong> 1884 (MQTT), 18083 (Panel zarządzania)
+              </p>
+              <p><strong>Nazwa kontenera:</strong> emqx_container</p>
+              <p><strong>Login:</strong> admin</p>
+              <p><strong>Hasło:</strong> public</p>
             </div>
           </div>
         </div>

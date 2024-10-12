@@ -1,0 +1,17 @@
+FROM codercom/code-server:latest
+
+# Przejście na użytkownika root, aby mieć odpowiednie uprawnienia
+USER root
+
+# Instalacja Python, pip i Go bez instalowania dodatkowych bibliotek
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip golang-go
+
+# Ustawienie domyślnego hasła dla code-server
+ENV PASSWORD=password1515!
+
+# Przejście z powrotem na standardowego użytkownika (coder)
+USER coder
+
+# Uruchomienie code-server
+CMD ["code-server", "--bind-addr", "0.0.0.0:8080", "--auth", "password"]
