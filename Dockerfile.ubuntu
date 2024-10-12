@@ -1,0 +1,44 @@
+# Dockerfile dla Ubuntu z Rust
+FROM ubuntu:latest
+
+# Tworzenie użytkownika "pizza" z hasłem "pizza1515!" i nadanie uprawnień sudo
+RUN useradd -rm -d /home/pizza -s /bin/bash -g root -G sudo pizza && \
+    echo 'pizza:pizza1515!' | chpasswd && \
+    mkdir -p /home/pizza
+
+# Instalowanie podstawowych pakietów, w tym narzędzi sieciowych
+RUN apt-get update && apt-get install -y \
+    openssh-server sudo nano vim htop tmux screen tree curl wget git \
+    gcc g++ make cmake gdb nginx \
+    golang libssl-dev libffi-dev xz-utils \
+    iputils-ping net-tools inetutils-traceroute dnsutils && \
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && \
+    apt-get clean
+
+# Instalowanie Emscripten
+RUN git clone https://github.com/emscripten-core/emsdk.git /opt/emsdk && \
+    cd /opt/emsdk && \
+    ./emsdk install latest && \
+    ./emsdk activate latest && \
+    echo "source /opt/emsdk/emsdk_env.sh" >> /home/pizza/.bashrc
+
+# Dodanie Emscripten do ścieżki systemowej
+ENV PATH="/opt/emsdk:$PATH"
+ENV EMSDK="/opt/emsdk"
+
+# Konfiguracja SSH
+RUN mkdir -p /var/run/sshd && \
+    echo 'root:root' | chpasswd && \
+    sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+    sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
+
+# Konfiguracja Nginx
+RUN mkdir -p /home/pizza/.ssh && chmod 700 /home/pizza/.ssh && \
+    echo 'daemon off;' >> /etc/nginx/nginx.conf
+
+# Eksponowanie portów SSH i HTTP
+EXPOSE 22 80
+
+# Uruchomienie SSH i Nginx
+CMD service ssh start && service nginx start && tail -f /dev/null

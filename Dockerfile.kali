@@ -1,0 +1,26 @@
+# Dockerfile dla Kali Linux
+FROM kalilinux/kali-rolling
+
+# Instalowanie podstawowych pakietów
+RUN apt-get update && apt-get install -y \
+    openssh-server sudo nano vim htop tmux screen tree curl wget git && \
+    apt-get clean
+
+# Tworzenie użytkownika "pizza" z hasłem "pizza1515!" i nadanie uprawnień sudo (UID automatycznie przypisany)
+RUN useradd -rm -d /home/pizza -s /bin/bash -g root -G sudo pizza && \
+    echo 'pizza:pizza1515!' | chpasswd
+
+# Upewnienie się, że katalog domowy użytkownika istnieje przed zmianami
+RUN mkdir -p /home/pizza
+
+# Konfiguracja SSH (użycie mkdir -p, żeby uniknąć błędu, jeśli katalog istnieje)
+RUN mkdir -p /var/run/sshd && \
+    echo 'root:root' | chpasswd && \
+    sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+    sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
+
+# Eksponowanie portu SSH
+EXPOSE 22
+
+# Uruchomienie SSH
+CMD service ssh start && tail -f /dev/null

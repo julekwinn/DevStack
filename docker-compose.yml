@@ -1,0 +1,351 @@
+services:
+  # Checkmk - narzędzie do monitorowania infrastruktury
+  checkmk:
+    image: checkmk/check-mk-raw:2.1.0-latest
+    container_name: checkmk
+    ports:
+      - "6069:5000" # Port webowy Checkmk
+    environment:
+      CMK_SITE_ID: cmk # Nazwa strony Checkmk
+      CMK_PASSWORD: adminpassword # Hasło dla użytkownika "cmkadmin"
+    volumes:
+      - ./shared/checkmk:/omd/sites # Przechowywanie danych Checkmk
+    networks:
+      - custom_net
+    restart: always
+
+  # Kontenery Ubuntu
+  ubuntu1:
+    build:
+      context: .
+      dockerfile: Dockerfile.ubuntu
+    container_name: ubuntu_container_1
+    volumes:
+      - ./shared/ubuntu1:/shared
+    ports:
+      - "2222:22"
+      - "8081:80"
+    networks:
+      - custom_net
+    restart: always
+
+  ubuntu2:
+    build:
+      context: .
+      dockerfile: Dockerfile.ubuntu
+    container_name: ubuntu_container_2
+    volumes:
+      - ./shared/ubuntu2:/shared
+    ports:
+      - "2223:22"
+      - "8082:80"
+    networks:
+      - custom_net
+    restart: always
+
+  ubuntu3:
+    build:
+      context: .
+      dockerfile: Dockerfile.ubuntu
+    container_name: ubuntu_container_3
+    volumes:
+      - ./shared/ubuntu3:/shared
+    ports:
+      - "2224:22"
+      - "8083:80"
+    networks:
+      - custom_net
+    restart: always
+
+  # Kontener Kali Linux
+  kali:
+    build:
+      context: .
+      dockerfile: Dockerfile.kali
+    container_name: kali_container
+    volumes:
+      - ./shared/kali:/shared
+    ports:
+      - "2225:22"
+    networks:
+      - custom_net
+    restart: always
+
+  # Kontener MongoDB
+  mongodb:
+    image: mongo:latest
+    container_name: mongo_container
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    volumes:
+      - ./shared/mongo:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - custom_net
+    restart: always
+
+  # Mongo Express (UI dla MongoDB)
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo_express_container
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: rootpassword
+      ME_CONFIG_MONGODB_SERVER: mongo_container
+    ports:
+      - "8096:8081" # Port webowy Mongo Express
+    networks:
+      - custom_net
+    restart: always
+
+  # Kontener PostgreSQL
+  postgres:
+    image: postgres:latest
+    container_name: postgres_container
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespassword
+      POSTGRES_DB: mydatabase
+    volumes:
+      - ./shared/postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - custom_net
+    restart: always
+
+  # Kontener Redis
+  redis:
+    image: redis:latest
+    container_name: redis_container
+    ports:
+      - "6379:6379"
+    networks:
+      - custom_net
+    restart: always
+
+  # Redis Commander (UI dla Redis)
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: redis_commander_container
+    environment:
+      REDIS_HOSTS: "local:redis_container:6379"
+    ports:
+      - "8087:8081" # Port webowy Redis Commander
+    networks:
+      - custom_net
+    restart: always
+
+  # Kontener Grafana
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana_container
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./shared/grafana:/var/lib/grafana
+    networks:
+      - custom_net
+    restart: always
+
+  # Kontener InfluxDB
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb_container
+    ports:
+      - "8086:8086"
+    volumes:
+      - ./shared/influxdb:/var/lib/influxdb
+    networks:
+      - custom_net
+    restart: always
+
+  # Kontener RabbitMQ
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq_container
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: rabbitmq
+      RABBITMQ_DEFAULT_PASS: rabbitmqpassword
+    networks:
+      - custom_net
+    restart: always
+
+  # Kontener Minio
+  minio:
+    image: minio/minio
+    container_name: minio_container
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadminpassword
+    volumes:
+      - ./shared/minio:/data
+    ports:
+      - "9000:9000" # Port API MinIO
+      - "9001:9001" # Port Web UI MinIO
+    command: server /data --console-address ":9001"
+    networks:
+      - custom_net
+    restart: always
+
+  # Kontener Jenkins
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins_container
+    ports:
+      - "8084:8080"
+      - "50000:50000"
+    volumes:
+      - ./shared/jenkins:/var/jenkins_home
+    networks:
+      - custom_net
+    restart: always
+
+  # Kontener hostujący statyczną stronę na porcie 6969
+  webserver:
+    image: nginx:alpine
+    container_name: static_web_container
+    volumes:
+      - ./DevStack.html:/usr/share/nginx/html/index.html # Ścieżka do pliku HTML
+    ports:
+      - "6969:80" # Mapowanie portu 6969 na port 80 kontenera Nginx
+    networks:
+      - custom_net
+    restart: always
+
+  # Kontener Metabase
+  metabase:
+    image: metabase/metabase
+    container_name: metabase_container
+    ports:
+      - "3001:3000" # Port webowy Metabase
+    volumes:
+      - ./shared/metabase:/metabase.db
+    networks:
+      - custom_net
+    restart: always
+
+  # Kontener pgAdmin
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: adminpassword
+    ports:
+      - "8085:80" # Port webowy pgAdmin
+    volumes:
+      - ./shared/pgadmin:/var/lib/pgadmin
+    networks:
+      - custom_net
+    restart: always
+
+  # Kontener SonarQube
+  sonarqube:
+    image: sonarqube:latest
+    container_name: sonarqube_container
+    ports:
+      - "9002:9000" # Port webowy SonarQube
+    volumes:
+      - ./shared/sonarqube_conf:/opt/sonarqube/conf
+      - ./shared/sonarqube_data:/opt/sonarqube/data
+      - ./shared/sonarqube_logs:/opt/sonarqube/logs
+      - ./shared/sonarqube_extensions:/opt/sonarqube/extensions
+    networks:
+      - custom_net
+    restart: always
+
+  # Kontener ZooKeeper
+  zookeeper:
+    image: bitnami/zookeeper:latest
+    container_name: zookeeper_container
+    ports:
+      - "2181:2181" # Port ZooKeeper
+    environment:
+      ALLOW_ANONYMOUS_LOGIN: "yes"
+    networks:
+      - custom_net
+    restart: always
+
+  # Kontener Kafka
+  kafka:
+    image: bitnami/kafka:latest
+    container_name: kafka_container
+    ports:
+      - "9092:9092" # Port Kafka
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      ALLOW_PLAINTEXT_LISTENER: "yes"
+    depends_on:
+      - zookeeper
+    networks:
+      - custom_net
+    restart: always
+
+  # Kontener Prometheus
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus_container
+    ports:
+      - "9090:9090" # Port webowy Prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - custom_net
+    restart: always
+
+  # Kontener Elasticsearch
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
+    container_name: elasticsearch_container
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - ./shared/elasticsearch:/usr/share/elasticsearch/data
+    networks:
+      - custom_net
+    restart: always
+
+  # Kontener Logstash
+  logstash:
+    image: logstash:7.10.1
+    container_name: logstash_container
+    volumes:
+      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    ports:
+      - "5000:5000" # Port Logstash TCP input
+    depends_on:
+      - elasticsearch
+    networks:
+      - custom_net
+    restart: always
+
+  # Kontener Kibana
+  kibana:
+    image: kibana:7.10.1
+    container_name: kibana_container
+    environment:
+      ELASTICSEARCH_HOSTS: "http://elasticsearch:9200"
+    ports:
+      - "5601:5601" # Port webowy Kibana
+    depends_on:
+      - elasticsearch
+    networks:
+      - custom_net
+    restart: always
+
+networks:
+  custom_net:
+    driver: bridge

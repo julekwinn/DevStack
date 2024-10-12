@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stack Developerski - Kontenery</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Devicon CSS CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/devicon@v2.15.1/devicon.min.css"
+    />
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
+  </head>
+  <body class="bg-white text-gray-800 font-sans">
+    <header class="py-8 border-b">
+      <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold">Stack Developerski</h1>
+        <p class="text-gray-600">Twoje narzędzia w jednym miejscu</p>
+      </div>
+    </header>
+
+    <nav class="bg-gray-100 py-4">
+      <div class="container mx-auto px-4">
+        <ul class="flex space-x-6">
+          <li><a href="#systemy" class="hover:text-blue-500">Systemy</a></li>
+          <li>
+            <a href="#bazy-danych" class="hover:text-blue-500">Bazy Danych</a>
+          </li>
+          <li>
+            <a href="#narzedzia" class="hover:text-blue-500">Narzędzia</a>
+          </li>
+          <li>
+            <a href="#przetwarzanie-strumieniowe" class="hover:text-blue-500"
+              >Przetwarzanie Strumieniowe</a
+            >
+          </li>
+          <li>
+            <a href="#strony-www" class="hover:text-blue-500">Strony WWW</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-10">
+      <!-- Sekcja Systemy -->
+      <section id="systemy" class="mb-16">
+        <h2 class="text-3xl font-semibold mb-6">Systemy</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Ubuntu Kontener 1 -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="devicon-ubuntu-plain colored text-4xl mr-2"></i>
+              <h3 class="text-2xl font-semibold">Ubuntu Kontener 1</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Standardowy system Ubuntu z dostępem przez SSH i HTTP.
+            </p>
+            <a
+              href="http://localhost:8081"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >Otwórz HTTP</a
+            >
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>SSH:</strong> ssh pizza@localhost -p 2222</p>
+              <p><strong>Hasło:</strong> pizza1515!</p>
+              <p><strong>Porty:</strong> 2222 (SSH), 8081 (HTTP)</p>
+              <p><strong>Nazwa kontenera:</strong> ubuntu_container_1</p>
+            </div>
+          </div>
+
+          <!-- Ubuntu Kontener 2 -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="devicon-ubuntu-plain colored text-4xl mr-2"></i>
+              <h3 class="text-2xl font-semibold">Ubuntu Kontener 2</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Standardowy system Ubuntu z dostępem przez SSH i HTTP.
+            </p>
+            <a
+              href="http://localhost:8082"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >Otwórz HTTP</a
+            >
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>SSH:</strong> ssh pizza@localhost -p 2223</p>
+              <p><strong>Hasło:</strong> pizza1515!</p>
+              <p><strong>Porty:</strong> 2223 (SSH), 8082 (HTTP)</p>
+              <p><strong>Nazwa kontenera:</strong> ubuntu_container_2</p>
+            </div>
+          </div>
+
+          <!-- Ubuntu Kontener 3 -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="devicon-ubuntu-plain colored text-4xl mr-2"></i>
+              <h3 class="text-2xl font-semibold">Ubuntu Kontener 3</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Standardowy system Ubuntu z dostępem przez SSH i HTTP.
+            </p>
+            <a
+              href="http://localhost:8083"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >Otwórz HTTP</a
+            >
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>SSH:</strong> ssh pizza@localhost -p 2224</p>
+              <p><strong>Hasło:</strong> pizza1515!</p>
+              <p><strong>Porty:</strong> 2224 (SSH), 8083 (HTTP)</p>
+              <p><strong>Nazwa kontenera:</strong> ubuntu_container_3</p>
+            </div>
+          </div>
+
+          <!-- Kali Linux -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="fa-solid fa-shield-halved text-4xl mr-2"></i>
+              <!-- Font Awesome Shield Icon -->
+              <h3 class="text-2xl font-semibold">Kali Linux</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Specjalistyczny system Kali Linux z dostępem przez SSH.
+            </p>
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>SSH:</strong> ssh pizza@localhost -p 2225</p>
+              <p><strong>Hasło:</strong> pizza1515!</p>
+              <p><strong>Port:</strong> 2225 (SSH)</p>
+              <p><strong>Nazwa kontenera:</strong> kali_container</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sekcja Bazy Danych -->
+      <section id="bazy-danych" class="mb-16">
+        <h2 class="text-3xl font-semibold mb-6">Bazy Danych</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- MongoDB -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="devicon-mongodb-plain colored text-4xl mr-2"></i>
+              <h3 class="text-2xl font-semibold">MongoDB</h3>
+            </div>
+            <p class="text-gray-600 mb-4">Baza danych NoSQL MongoDB.</p>
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Login:</strong> root</p>
+              <p><strong>Hasło:</strong> rootpassword</p>
+              <p><strong>Port:</strong> 27017</p>
+              <p><strong>Nazwa kontenera:</strong> mongo_container</p>
+            </div>
+          </div>
+
+          <!-- Mongo Express -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="devicon-mongodb-plain colored text-4xl mr-2"></i>
+              <h3 class="text-2xl font-semibold">Mongo Express</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Interfejs użytkownika Mongo Express dla MongoDB.
+            </p>
+            <a
+              href="http://localhost:8096"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >Otwórz Mongo Express</a
+            >
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Login:</strong> root</p>
+              <p><strong>Hasło:</strong> rootpassword</p>
+              <p><strong>Port:</strong> 8096</p>
+              <p><strong>Nazwa kontenera:</strong> mongo_express_container</p>
+            </div>
+          </div>
+
+          <!-- PostgreSQL -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="devicon-postgresql-plain colored text-4xl mr-2"></i>
+              <h3 class="text-2xl font-semibold">PostgreSQL</h3>
+            </div>
+            <p class="text-gray-600 mb-4">Baza danych SQL PostgreSQL.</p>
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Login:</strong> postgres</p>
+              <p><strong>Hasło:</strong> postgrespassword</p>
+              <p><strong>Port:</strong> 5432</p>
+              <p><strong>Nazwa kontenera:</strong> postgres_container</p>
+            </div>
+          </div>
+
+          <!-- Redis -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="devicon-redis-plain colored text-4xl mr-2"></i>
+              <h3 class="text-2xl font-semibold">Redis</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Szybki magazyn danych typu key-value Redis.
+            </p>
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Port:</strong> 6379</p>
+              <p><strong>Nazwa kontenera:</strong> redis_container</p>
+            </div>
+          </div>
+
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="devicon-redis-plain colored text-4xl mr-2"></i>
+              <h3 class="text-2xl font-semibold">Redis Commander</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Interfejs użytkownika Redis Commander.
+            </p>
+            <a
+              href="http://localhost:8087"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >Otwórz Redis Commander</a
+            >
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Port:</strong> 8087</p>
+              <p><strong>Nazwa kontenera:</strong> redis_commander_container</p>
+            </div>
+          </div>
+          <!-- InfluxDB -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="devicon-influxdb-plain colored text-4xl mr-2"></i>
+              <h3 class="text-2xl font-semibold">InfluxDB</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Baza danych do przechowywania metryk.
+            </p>
+            <a
+              href="http://localhost:8086"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >Otwórz InfluxDB</a
+            >
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Port:</strong> 8086</p>
+              <p><strong>Nazwa kontenera:</strong> influxdb_container</p>
+            </div>
+          </div>
+
+          <!-- Elasticsearch -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="devicon-elasticsearch-plain colored text-4xl mr-2"></i>
+              <h3 class="text-2xl font-semibold">Elasticsearch</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Silnik wyszukiwania i analizy danych w czasie rzeczywistym.
+            </p>
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Porty:</strong> 9200 (REST API), 9300 (Transport)</p>
+              <p><strong>Nazwa kontenera:</strong> elasticsearch_container</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sekcja Narzędzia -->
+      <section id="narzedzia" class="mb-16">
+        <h2 class="text-3xl font-semibold mb-6">Narzędzia</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Checkmk -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="fa-solid fa-eye text-4xl mr-2"></i>
+              <!-- Font Awesome Eye Icon -->
+              <h3 class="text-2xl font-semibold">Checkmk</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Narzędzie do monitorowania infrastruktury.
+            </p>
+            <a
+              href="http://localhost:6069"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >Otwórz Checkmk</a
+            >
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Login:</strong> cmkadmin</p>
+              <p><strong>Hasło:</strong> adminpassword</p>
+              <p><strong>Port:</strong> 6069</p>
+              <p><strong>Nazwa kontenera:</strong> checkmk</p>
+            </div>
+          </div>
+
+          <!-- Grafana -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="devicon-grafana-original colored text-4xl mr-2"></i>
+              <h3 class="text-2xl font-semibold">Grafana</h3>
+            </div>
+            <p class="text-gray-600 mb-4">Narzędzie do wizualizacji danych.</p>
+            <a
+              href="http://localhost:3000"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >Otwórz Grafana</a
+            >
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Login:</strong> admin</p>
+              <p><strong>Hasło:</strong> admin</p>
+              <p><strong>Port:</strong> 3000</p>
+              <p><strong>Nazwa kontenera:</strong> grafana_container</p>
+            </div>
+          </div>
+
+          <!-- RabbitMQ -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="devicon-rabbitmq-plain colored text-4xl mr-2"></i>
+              <h3 class="text-2xl font-semibold">RabbitMQ</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Broker wiadomości RabbitMQ z interfejsem zarządzania.
+            </p>
+            <a
+              href="http://localhost:15672"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >Otwórz RabbitMQ</a
+            >
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Login:</strong> rabbitmq</p>
+              <p><strong>Hasło:</strong> rabbitmqpassword</p>
+              <p><strong>Porty:</strong> 5672 (AMQP), 15672 (Management)</p>
+              <p><strong>Nazwa kontenera:</strong> rabbitmq_container</p>
+            </div>
+          </div>
+
+          <!-- MinIO -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="fa-solid fa-cloud text-4xl mr-2"></i>
+              <!-- Font Awesome Cloud Icon -->
+              <h3 class="text-2xl font-semibold">MinIO</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              System przechowywania obiektów kompatybilny z S3.
+            </p>
+            <a
+              href="http://localhost:9001"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >Otwórz MinIO</a
+            >
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Login:</strong> minioadmin</p>
+              <p><strong>Hasło:</strong> minioadminpassword</p>
+              <p><strong>Porty:</strong> 9000 (API), 9001 (Web UI)</p>
+              <p><strong>Nazwa kontenera:</strong> minio_container</p>
+            </div>
+          </div>
+
+          <!-- Jenkins -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="devicon-jenkins-line colored text-4xl mr-2"></i>
+              <h3 class="text-2xl font-semibold">Jenkins</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Narzędzie do automatyzacji zadań CI/CD.
+            </p>
+            <a
+              href="http://localhost:8084"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >Otwórz Jenkins</a
+            >
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Login:</strong> jenkins_admin</p>
+              <p><strong>Email:</strong> admin@admin.pl</p>
+              <p><strong>Hasło:</strong> jenkinspass1515!</p>
+              <p><strong>Porty:</strong> 8084 (Web UI), 50000 (Agent)</p>
+              <p><strong>Nazwa kontenera:</strong> jenkins_container</p>
+            </div>
+          </div>
+
+          <!-- Metabase -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="fa-solid fa-chart-line text-4xl mr-2"></i>
+              <!-- Font Awesome Chart Line Icon -->
+              <h3 class="text-2xl font-semibold">Metabase</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Narzędzie do analizy danych i tworzenia raportów.
+            </p>
+            <a
+              href="http://localhost:3001"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >Otwórz Metabase</a
+            >
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Email:</strong> admin@admin.pl</p>
+              <p><strong>Hasło:</strong> meta1515!</p>
+              <p><strong>Port:</strong> 3001</p>
+              <p><strong>Nazwa kontenera:</strong> metabase_container</p>
+            </div>
+          </div>
+
+          <!-- pgAdmin -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="fa-solid fa-database text-4xl mr-2"></i>
+              <!-- Font Awesome Database Icon -->
+              <h3 class="text-2xl font-semibold">pgAdmin</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Interfejs webowy do zarządzania PostgreSQL.
+            </p>
+            <a
+              href="http://localhost:8085"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >Otwórz pgAdmin</a
+            >
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Email:</strong> admin@admin.com</p>
+              <p><strong>Hasło:</strong> adminpassword</p>
+              <p><strong>Port:</strong> 8085</p>
+              <p><strong>Nazwa kontenera:</strong> pgadmin_container</p>
+            </div>
+          </div>
+
+          <!-- SonarQube -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="devicon-sonarqube-plain colored text-4xl mr-2"></i>
+              <h3 class="text-2xl font-semibold">SonarQube</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Narzędzie do analizy jakości kodu źródłowego.
+            </p>
+            <a
+              href="http://localhost:9002"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >Otwórz SonarQube</a
+            >
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Login:</strong> admin</p>
+              <p><strong>Hasło:</strong> Sonarpass1515!</p>
+              <p><strong>Port:</strong> 9002</p>
+              <p><strong>Nazwa kontenera:</strong> sonarqube_container</p>
+            </div>
+          </div>
+
+          <!-- Prometheus -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="devicon-prometheus-plain colored text-4xl mr-2"></i>
+              <h3 class="text-2xl font-semibold">Prometheus</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              System monitorowania i alertowania.
+            </p>
+            <a
+              href="http://localhost:9090"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >Otwórz Prometheus</a
+            >
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Port:</strong> 9090</p>
+              <p><strong>Nazwa kontenera:</strong> prometheus_container</p>
+            </div>
+          </div>
+
+          <!-- Kibana -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="devicon-kibana-plain colored text-4xl mr-2"></i>
+              <h3 class="text-2xl font-semibold">Kibana</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Interfejs do wizualizacji danych z Elasticsearch.
+            </p>
+            <a
+              href="http://localhost:5601"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >Otwórz Kibana</a
+            >
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Port:</strong> 5601</p>
+              <p><strong>Nazwa kontenera:</strong> kibana_container</p>
+            </div>
+          </div>
+
+          <!-- Logstash -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="devicon-logstash-plain colored text-4xl mr-2"></i>
+              <h3 class="text-2xl font-semibold">Logstash</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Narzędzie do przetwarzania i przesyłania logów.
+            </p>
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Port:</strong> 5000</p>
+              <p><strong>Nazwa kontenera:</strong> logstash_container</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sekcja Przetwarzanie Strumieniowe -->
+      <section id="przetwarzanie-strumieniowe" class="mb-16">
+        <h2 class="text-3xl font-semibold mb-6">Przetwarzanie Strumieniowe</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Apache Kafka -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="devicon-apachekafka-original colored text-4xl mr-2"></i>
+              <h3 class="text-2xl font-semibold">Apache Kafka</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Platforma do przetwarzania strumieniowego danych w czasie
+              rzeczywistym.
+            </p>
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Port:</strong> 9092</p>
+              <p><strong>Nazwa kontenera:</strong> kafka_container</p>
+            </div>
+          </div>
+
+          <!-- ZooKeeper -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="fa-solid fa-server text-4xl mr-2"></i>
+              <!-- Font Awesome Server Icon -->
+              <h3 class="text-2xl font-semibold">ZooKeeper</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Usługa koordynacji dla rozproszonych systemów.
+            </p>
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Port:</strong> 2181</p>
+              <p><strong>Nazwa kontenera:</strong> zookeeper_container</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sekcja Strony WWW -->
+      <section id="strony-www" class="mb-16">
+        <h2 class="text-3xl font-semibold mb-6">Strony WWW</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Statyczna Strona WWW -->
+          <div class="border rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <i class="devicon-nginx-plain colored text-4xl mr-2"></i>
+              <h3 class="text-2xl font-semibold">Statyczna Strona WWW</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Kontener hostujący statyczną stronę na serwerze Nginx.
+            </p>
+            <a
+              href="http://localhost:6969"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >Otwórz Stronę</a
+            >
+            <div class="mt-4 text-sm text-gray-500">
+              <p><strong>Port:</strong> 6969</p>
+              <p><strong>Nazwa kontenera:</strong> static_web_container</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="py-8 border-t">
+      <div class="container mx-auto px-4 text-center">
+        <p class="text-gray-600">
+          © 2024 Stack Developerski. Wszelkie prawa zastrzeżone.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
