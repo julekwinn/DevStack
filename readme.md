@@ -24,6 +24,9 @@ DevStack is a comprehensive, Docker-based development environment that provides 
 
 This project aims to simplify the setup process for developers, allowing them to focus on coding rather than environment configuration. It's perfect for individual developers, teams, and educational purposes.
 
+![DeVstack 1 0](https://github.com/user-attachments/assets/5e5c9ace-bddb-40b3-b27d-c74efe4e599a)
+
+
 ## Features
 
 - **One-Click Setup**: Launch a complete development environment with a single `docker-compose up` command.
